@@ -3,7 +3,7 @@ package configcommands_test
 import (
 	"path"
 
-	. "github.com/pivotalservices/cf-mgmt/configcommands"
+	. "github.com/pivotal-michael-stergianis/cf-mgmt/configcommands"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

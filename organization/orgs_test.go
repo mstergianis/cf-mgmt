@@ -6,12 +6,12 @@ import (
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/pivotalservices/cf-mgmt/config"
-	configfakes "github.com/pivotalservices/cf-mgmt/config/fakes"
-	. "github.com/pivotalservices/cf-mgmt/organization"
-	orgfakes "github.com/pivotalservices/cf-mgmt/organization/fakes"
-	orgreaderfakes "github.com/pivotalservices/cf-mgmt/organizationreader/fakes"
-	spacefakes "github.com/pivotalservices/cf-mgmt/space/fakes"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	configfakes "github.com/pivotal-michael-stergianis/cf-mgmt/config/fakes"
+	. "github.com/pivotal-michael-stergianis/cf-mgmt/organization"
+	orgfakes "github.com/pivotal-michael-stergianis/cf-mgmt/organization/fakes"
+	orgreaderfakes "github.com/pivotal-michael-stergianis/cf-mgmt/organizationreader/fakes"
+	spacefakes "github.com/pivotal-michael-stergianis/cf-mgmt/space/fakes"
 )
 
 var _ = Describe("given OrgManager", func() {

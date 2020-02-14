@@ -1,7 +1,7 @@
 package ldap_test
 
 import (
-	. "github.com/pivotalservices/cf-mgmt/ldap"
+	. "github.com/pivotal-michael-stergianis/cf-mgmt/ldap"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

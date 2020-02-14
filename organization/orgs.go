@@ -5,10 +5,10 @@ import (
 	"strings"
 
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
-	"github.com/pivotalservices/cf-mgmt/config"
-	"github.com/pivotalservices/cf-mgmt/organizationreader"
-	"github.com/pivotalservices/cf-mgmt/space"
-	"github.com/pivotalservices/cf-mgmt/util"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/organizationreader"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/space"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/util"
 	"github.com/pkg/errors"
 	"github.com/xchapter7x/lo"
 )

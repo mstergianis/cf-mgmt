@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/pivotalservices/cf-mgmt/config"
-	. "github.com/pivotalservices/cf-mgmt/serviceaccess/legacy"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	. "github.com/pivotal-michael-stergianis/cf-mgmt/serviceaccess/legacy"
 
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
-	configfakes "github.com/pivotalservices/cf-mgmt/config/fakes"
-	orgfakes "github.com/pivotalservices/cf-mgmt/organizationreader/fakes"
-	"github.com/pivotalservices/cf-mgmt/serviceaccess/legacy/fakes"
+	configfakes "github.com/pivotal-michael-stergianis/cf-mgmt/config/fakes"
+	orgfakes "github.com/pivotal-michael-stergianis/cf-mgmt/organizationreader/fakes"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/serviceaccess/legacy/fakes"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

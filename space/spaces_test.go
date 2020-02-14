@@ -7,15 +7,15 @@ import (
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/pivotalservices/cf-mgmt/config"
-	configfakes "github.com/pivotalservices/cf-mgmt/config/fakes"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	configfakes "github.com/pivotal-michael-stergianis/cf-mgmt/config/fakes"
 
 	"time"
 
-	orgfakes "github.com/pivotalservices/cf-mgmt/organizationreader/fakes"
-	"github.com/pivotalservices/cf-mgmt/space"
-	spacefakes "github.com/pivotalservices/cf-mgmt/space/fakes"
-	uaafakes "github.com/pivotalservices/cf-mgmt/uaa/fakes"
+	orgfakes "github.com/pivotal-michael-stergianis/cf-mgmt/organizationreader/fakes"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/space"
+	spacefakes "github.com/pivotal-michael-stergianis/cf-mgmt/space/fakes"
+	uaafakes "github.com/pivotal-michael-stergianis/cf-mgmt/uaa/fakes"
 )
 
 var _ = Describe("given SpaceManager", func() {

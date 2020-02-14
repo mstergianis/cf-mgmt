@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/pivotalservices/cf-mgmt/ldap"
-	"github.com/pivotalservices/cf-mgmt/uaa"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/ldap"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/uaa"
 	"github.com/pkg/errors"
 	"github.com/xchapter7x/lo"
 )

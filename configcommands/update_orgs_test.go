@@ -6,9 +6,9 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 
-	"github.com/pivotalservices/cf-mgmt/config"
-	"github.com/pivotalservices/cf-mgmt/config/fakes"
-	. "github.com/pivotalservices/cf-mgmt/configcommands"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config/fakes"
+	. "github.com/pivotal-michael-stergianis/cf-mgmt/configcommands"
 )
 
 var _ = Describe("given update orgs config command", func() {

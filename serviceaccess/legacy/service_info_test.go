@@ -2,7 +2,7 @@ package legacy_test
 
 import (
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
-	. "github.com/pivotalservices/cf-mgmt/serviceaccess/legacy"
+	. "github.com/pivotal-michael-stergianis/cf-mgmt/serviceaccess/legacy"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

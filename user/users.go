@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/pivotalservices/cf-mgmt/config"
-	"github.com/pivotalservices/cf-mgmt/ldap"
-	"github.com/pivotalservices/cf-mgmt/organizationreader"
-	"github.com/pivotalservices/cf-mgmt/space"
-	"github.com/pivotalservices/cf-mgmt/uaa"
-	"github.com/pivotalservices/cf-mgmt/util"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/ldap"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/organizationreader"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/space"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/uaa"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/util"
 	"github.com/pkg/errors"
 	"github.com/xchapter7x/lo"
 )

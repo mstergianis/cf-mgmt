@@ -3,7 +3,7 @@ package configcommands
 import (
 	"fmt"
 
-	"github.com/pivotalservices/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
 )
 
 type RenameSpaceConfigurationCommand struct {

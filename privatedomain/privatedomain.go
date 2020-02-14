@@ -8,8 +8,8 @@ import (
 	"github.com/pkg/errors"
 
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
-	"github.com/pivotalservices/cf-mgmt/config"
-	"github.com/pivotalservices/cf-mgmt/organizationreader"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/organizationreader"
 	"github.com/xchapter7x/lo"
 )
 

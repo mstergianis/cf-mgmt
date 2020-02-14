@@ -3,7 +3,7 @@ package configcommands
 import (
 	"errors"
 
-	"github.com/pivotalservices/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
 )
 
 type OrgNamedQuotaConfigurationCommand struct {

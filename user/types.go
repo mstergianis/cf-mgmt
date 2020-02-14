@@ -4,8 +4,8 @@ import (
 	"net/url"
 
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
-	"github.com/pivotalservices/cf-mgmt/ldap"
-	"github.com/pivotalservices/cf-mgmt/uaa"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/ldap"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/uaa"
 )
 
 func InitRoleUsers() *RoleUsers {

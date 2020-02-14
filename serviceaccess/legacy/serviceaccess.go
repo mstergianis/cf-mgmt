@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/pivotalservices/cf-mgmt/config"
-	"github.com/pivotalservices/cf-mgmt/organizationreader"
-	"github.com/pivotalservices/cf-mgmt/util"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/organizationreader"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/util"
 	"github.com/xchapter7x/lo"
 )
 

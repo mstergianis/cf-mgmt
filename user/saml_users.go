@@ -3,7 +3,7 @@ package user
 import (
 	"fmt"
 
-	"github.com/pivotalservices/cf-mgmt/uaa"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/uaa"
 	"github.com/pkg/errors"
 	"github.com/xchapter7x/lo"
 )

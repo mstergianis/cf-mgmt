@@ -2,10 +2,10 @@
 package fakes
 
 import (
-	sync "sync"
+	"sync"
 
-	ldap "github.com/pivotalservices/cf-mgmt/ldap"
-	user "github.com/pivotalservices/cf-mgmt/user"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/ldap"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/user"
 )
 
 type FakeLdapManager struct {

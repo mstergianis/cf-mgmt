@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pivotalservices/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
 )
 
 type SpaceConfigurationCommand struct {

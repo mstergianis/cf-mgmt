@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"github.com/pivotalservices/cf-mgmt/export"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/export"
 )
 
 type ExportServiceAccessCommand struct {

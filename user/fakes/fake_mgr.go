@@ -2,10 +2,10 @@
 package fakes
 
 import (
-	sync "sync"
+	"sync"
 
-	uaa "github.com/pivotalservices/cf-mgmt/uaa"
-	user "github.com/pivotalservices/cf-mgmt/user"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/uaa"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/user"
 )
 
 type FakeManager struct {

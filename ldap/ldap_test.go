@@ -6,9 +6,9 @@ import (
 	l "github.com/go-ldap/ldap"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/pivotalservices/cf-mgmt/config"
-	"github.com/pivotalservices/cf-mgmt/ldap"
-	"github.com/pivotalservices/cf-mgmt/ldap/fakes"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/ldap"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/ldap/fakes"
 )
 
 var _ = Describe("Ldap", func() {

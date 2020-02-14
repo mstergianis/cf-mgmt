@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	ldapgo_ldap "github.com/go-ldap/ldap"
-	"github.com/pivotalservices/cf-mgmt/ldap"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/ldap"
 )
 
 type FakeConnection struct {

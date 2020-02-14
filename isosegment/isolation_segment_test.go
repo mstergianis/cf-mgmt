@@ -6,11 +6,11 @@ import (
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/pivotalservices/cf-mgmt/config"
-	"github.com/pivotalservices/cf-mgmt/isosegment"
-	"github.com/pivotalservices/cf-mgmt/isosegment/fakes"
-	orgfakes "github.com/pivotalservices/cf-mgmt/organizationreader/fakes"
-	spacefakes "github.com/pivotalservices/cf-mgmt/space/fakes"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/isosegment"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/isosegment/fakes"
+	orgfakes "github.com/pivotal-michael-stergianis/cf-mgmt/organizationreader/fakes"
+	spacefakes "github.com/pivotal-michael-stergianis/cf-mgmt/space/fakes"
 )
 
 var _ = Describe("Isolation Segments", func() {

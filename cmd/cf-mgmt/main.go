@@ -5,7 +5,7 @@ import (
 	"os"
 
 	flags "github.com/jessevdk/go-flags"
-	"github.com/pivotalservices/cf-mgmt/commands"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/commands"
 )
 
 func main() {

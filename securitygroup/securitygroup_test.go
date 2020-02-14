@@ -7,11 +7,11 @@ import (
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/pivotalservices/cf-mgmt/config"
-	configfakes "github.com/pivotalservices/cf-mgmt/config/fakes"
-	"github.com/pivotalservices/cf-mgmt/securitygroup"
-	securitygroupfakes "github.com/pivotalservices/cf-mgmt/securitygroup/fakes"
-	spacefakes "github.com/pivotalservices/cf-mgmt/space/fakes"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	configfakes "github.com/pivotal-michael-stergianis/cf-mgmt/config/fakes"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/securitygroup"
+	securitygroupfakes "github.com/pivotal-michael-stergianis/cf-mgmt/securitygroup/fakes"
+	spacefakes "github.com/pivotal-michael-stergianis/cf-mgmt/space/fakes"
 )
 
 const asg_config = `[

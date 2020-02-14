@@ -6,11 +6,11 @@ import (
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/pivotalservices/cf-mgmt/config"
-	configfakes "github.com/pivotalservices/cf-mgmt/config/fakes"
-	orgfakes "github.com/pivotalservices/cf-mgmt/organizationreader/fakes"
-	. "github.com/pivotalservices/cf-mgmt/privatedomain"
-	"github.com/pivotalservices/cf-mgmt/privatedomain/fakes"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/config"
+	configfakes "github.com/pivotal-michael-stergianis/cf-mgmt/config/fakes"
+	orgfakes "github.com/pivotal-michael-stergianis/cf-mgmt/organizationreader/fakes"
+	. "github.com/pivotal-michael-stergianis/cf-mgmt/privatedomain"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/privatedomain/fakes"
 )
 
 var _ = Describe("given UserSpaces", func() {

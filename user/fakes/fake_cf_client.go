@@ -2,11 +2,11 @@
 package fakes
 
 import (
-	url "net/url"
-	sync "sync"
+	"net/url"
+	"sync"
 
 	cfclient "github.com/cloudfoundry-community/go-cfclient"
-	user "github.com/pivotalservices/cf-mgmt/user"
+	"github.com/pivotal-michael-stergianis/cf-mgmt/user"
 )
 
 type FakeCFClient struct {
