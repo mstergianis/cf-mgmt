@@ -1,7 +1,7 @@
 package uaa_test
 
 import (
-	. "github.com/pivotalservices/cf-mgmt/uaa"
+	. "github.com/pivotal-michael-stergianis/cf-mgmt/uaa"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

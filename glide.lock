@@ -1,5 +1,5 @@
-hash: 39963338827c0b5242b4d1c86df8af7e7b63590d404c9c4d62f4781ac232b916
-updated: 2020-02-03T10:03:21.993149-07:00
+hash: cf9b6265466a608419984fc7218367f0dcee767efb4f883c86492993e74c2b15
+updated: 2020-02-18T11:38:24.451485-05:00
 imports:
 - name: code.cloudfoundry.org/cfhttp
   version: 1f526aa7822e788b7e8b9dd097b0cf8c5b2fdb71
@@ -21,7 +21,7 @@ imports:
   version: 161a211c4903484706d816adaa367a7c9fcf9e3e
   repo: https://github.com/calebwashburn/go-cfclient
 - name: github.com/cloudfoundry-community/go-uaa
-  version: 10d9dedd9e3453da8bd404d938f4e1f52f12d589 
+  version: 673d775e96b5d67f107a28c169384df45dd9d0ac
   subpackages:
   - passwordcredentials
 - name: github.com/fatih/color
@@ -36,10 +36,6 @@ imports:
   version: 96dc06278ce32a0e9d957d590bb987c81ee66407
 - name: github.com/Masterminds/semver
   version: 3c560837130448941620d7694991d3ec440aefc0
-- name: github.com/mattn/go-colorable
-  version: efa589957cd060542a26d2dd7832fd6a6c6c3ade
-- name: github.com/mattn/go-isatty
-  version: 3fb116b820352b7f0c281308a4d6250c22d94e27
 - name: github.com/nu7hatch/gouuid
   version: 179d4d0c4d8d407a32af483c2354df1d2c91e6c3
 - name: github.com/op/go-logging
@@ -67,10 +63,6 @@ imports:
   subpackages:
   - clientcredentials
   - internal
-- name: golang.org/x/sys
-  version: 1b2967e3c290b7c545b3db0deeda16e9be4f98a2
-  subpackages:
-  - unix
 - name: google.golang.org/appengine
   version: b1f26356af11148e710935ed1ac8a7f5702c7612
   subpackages:
@@ -133,6 +125,10 @@ testImports:
   - matchers/support/goraph/node
   - matchers/support/goraph/util
   - types
+- name: golang.org/x/sys
+  version: 1b2967e3c290b7c545b3db0deeda16e9be4f98a2
+  subpackages:
+  - unix
 - name: golang.org/x/text
   version: 0605a8320aceb4207a5fb3521281e17ec2075476
   subpackages:
