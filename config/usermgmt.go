@@ -27,3 +27,17 @@ func (u *UserMgmt) groups(groupName string) []string {
 	}
 	return result
 }
+
+func (u *UserMgmt) hasUAAUser(user string) bool {
+	for _, existentUser := range u.Users {
+		if user == existentUser {
+			return true
+		}
+	}
+
+	return false
+}
+
+func (u *UserMgmt) addUAAUser(user string) {
+	u.Users = append(u.Users, user)
+}

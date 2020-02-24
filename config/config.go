@@ -31,6 +31,10 @@ type Updater interface {
 	CreateConfigIfNotExists(uaaOrigin string) error
 	DeleteConfigIfExists() error
 
+	AssociateOrgAuditor(orgName, user string) error
+	AssociateSpaceDeveloper(orgName, spaceName, user string) error
+	AssociateSpaceAuditor(orgName, spaceName, user string) error
+
 	SaveOrgSpaces(spaces *Spaces) error
 	SaveSpaceConfig(spaceConfig *SpaceConfig) error
 	SaveOrgConfig(orgConfig *OrgConfig) error
