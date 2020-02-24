@@ -647,3 +647,45 @@ func (m *yamlManager) SaveSpaceQuota(spaceQuota *SpaceQuota) error {
 	fmt.Println(fmt.Sprintf("Saving Named Space Quote %s for org %s", spaceQuota.Name, spaceQuota.Org))
 	return WriteFile(targetFile, spaceQuota)
 }
+
+func (m *yamlManager) AssociateOrgAuditor(orgName, user string) error {
+	orgConfig, err := m.GetOrgConfig(orgName)
+	if err != nil {
+		return err
+	}
+
+	if orgConfig.Auditor.hasUAAUser(user) {
+		return nil
+	}
+
+	// TODO: generalize so we can add users to correct origin
+	orgConfig.Auditor.addUAAUser(user)
+	if err = m.SaveOrgConfig(orgConfig); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *yamlManager) AssociateSpaceDeveloper(orgName, spaceName, user string) error {
+	spaceConfig, err := m.GetSpaceConfig(orgName, spaceName)
+	if err != nil {
+		return err
+	}
+
+	if spaceConfig.Developer.hasUAAUser(user) {
+		return nil
+	}
+
+	// TODO: generalize so we can add users to correct origin
+	spaceConfig.Developer.addUAAUser(user)
+	if err = m.SaveSpaceConfig(spaceConfig); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *yamlManager) associateSpaceRole(role, orgName, spaceName, user string) error {
+	return nil
+}
