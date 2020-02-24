@@ -479,7 +479,7 @@ var _ = Describe("CF-Mgmt Config", func() {
 	})
 
 	Context("YAML Config Updater", func() {
-		FContext("User Actions", func() {
+		Context("User Actions", func() {
 			var tempDir string
 			var configManager config.Manager
 
@@ -495,7 +495,7 @@ var _ = Describe("CF-Mgmt Config", func() {
 				os.RemoveAll(tempDir)
 			})
 
-			Context("Associate Org User", func() {
+			Context("Associate Org Auditor", func() {
 				When("the org exists", func() {
 					const (
 						orgName  = "the-org"
@@ -559,8 +559,8 @@ var _ = Describe("CF-Mgmt Config", func() {
 				})
 			})
 
-			Context("Associate Space Developer", func() {
-				When("the org exists", func() {
+			Context("Associate Space Role", func() {
+				When("the org and space exist", func() {
 					const (
 						orgName   = "the-org"
 						spaceName = "the-space"
@@ -585,7 +585,7 @@ var _ = Describe("CF-Mgmt Config", func() {
 					})
 
 					When("the user does not exist in the space", func() {
-						It("creates the user", func() {
+						It("creates the user with a developer role", func() {
 							s, err := configManager.GetSpaceConfig(orgName, spaceName)
 							Expect(err).ShouldNot(HaveOccurred())
 							Expect(s.Developer.Users).Should(HaveLen(0))
@@ -596,6 +596,19 @@ var _ = Describe("CF-Mgmt Config", func() {
 							s, err = configManager.GetSpaceConfig(orgName, spaceName)
 							Expect(err).ShouldNot(HaveOccurred())
 							Expect(s.Developer.Users).Should(HaveLen(1))
+						})
+
+						It("creates the user with an auditor role", func() {
+							s, err := configManager.GetSpaceConfig(orgName, spaceName)
+							Expect(err).ShouldNot(HaveOccurred())
+							Expect(s.Developer.Users).Should(HaveLen(0))
+
+							err = configManager.AssociateSpaceAuditor(orgName, spaceName, userName)
+							Expect(err).ShouldNot(HaveOccurred())
+
+							s, err = configManager.GetSpaceConfig(orgName, spaceName)
+							Expect(err).ShouldNot(HaveOccurred())
+							Expect(s.Auditor.Users).Should(HaveLen(1))
 						})
 					})
 

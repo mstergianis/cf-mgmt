@@ -648,6 +648,13 @@ func (m *yamlManager) SaveSpaceQuota(spaceQuota *SpaceQuota) error {
 	return WriteFile(targetFile, spaceQuota)
 }
 
+type userRole int
+
+const (
+	auditorRole userRole = iota
+	developerRole
+)
+
 func (m *yamlManager) AssociateOrgAuditor(orgName, user string) error {
 	orgConfig, err := m.GetOrgConfig(orgName)
 	if err != nil {
@@ -667,7 +674,15 @@ func (m *yamlManager) AssociateOrgAuditor(orgName, user string) error {
 	return nil
 }
 
+func (m *yamlManager) AssociateSpaceAuditor(orgName, spaceName, user string) error {
+	return m.associateSpaceRole(auditorRole, orgName, spaceName, user)
+}
+
 func (m *yamlManager) AssociateSpaceDeveloper(orgName, spaceName, user string) error {
+	return m.associateSpaceRole(developerRole, orgName, spaceName, user)
+}
+
+func (m *yamlManager) associateSpaceRole(role userRole, orgName, spaceName, user string) error {
 	spaceConfig, err := m.GetSpaceConfig(orgName, spaceName)
 	if err != nil {
 		return err
@@ -677,15 +692,23 @@ func (m *yamlManager) AssociateSpaceDeveloper(orgName, spaceName, user string) e
 		return nil
 	}
 
+	var userManager *UserMgmt
+	switch role {
+	case auditorRole:
+		userManager = &spaceConfig.Auditor
+	case developerRole:
+		userManager = &spaceConfig.Developer
+
+	// this cannot be tested as we cannot call unexported methods from the test package
+	default:
+		return errors.New("an invalid space role was provided")
+	}
+
 	// TODO: generalize so we can add users to correct origin
-	spaceConfig.Developer.addUAAUser(user)
+	userManager.addUAAUser(user)
 	if err = m.SaveSpaceConfig(spaceConfig); err != nil {
 		return err
 	}
 
-	return nil
-}
-
-func (m *yamlManager) associateSpaceRole(role, orgName, spaceName, user string) error {
 	return nil
 }
