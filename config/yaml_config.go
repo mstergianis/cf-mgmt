@@ -655,18 +655,13 @@ const (
 	developerRole
 )
 
-func (m *yamlManager) AssociateOrgAuditor(orgName, user string) error {
+func (m *yamlManager) AssociateOrgAuditor(origin UserOrigin, orgName, user string) error {
 	orgConfig, err := m.GetOrgConfig(orgName)
 	if err != nil {
 		return err
 	}
 
-	if orgConfig.Auditor.hasUAAUser(user) {
-		return nil
-	}
-
-	// TODO: generalize so we can add users to correct origin
-	orgConfig.Auditor.addUAAUser(user)
+	orgConfig.Auditor.addUser(origin, user)
 	if err = m.SaveOrgConfig(orgConfig); err != nil {
 		return err
 	}
@@ -674,22 +669,18 @@ func (m *yamlManager) AssociateOrgAuditor(orgName, user string) error {
 	return nil
 }
 
-func (m *yamlManager) AssociateSpaceAuditor(orgName, spaceName, user string) error {
-	return m.associateSpaceRole(auditorRole, orgName, spaceName, user)
+func (m *yamlManager) AssociateSpaceAuditor(origin UserOrigin, orgName, spaceName, user string) error {
+	return m.associateSpaceRole(auditorRole, origin, orgName, spaceName, user)
 }
 
-func (m *yamlManager) AssociateSpaceDeveloper(orgName, spaceName, user string) error {
-	return m.associateSpaceRole(developerRole, orgName, spaceName, user)
+func (m *yamlManager) AssociateSpaceDeveloper(origin UserOrigin, orgName, spaceName, user string) error {
+	return m.associateSpaceRole(developerRole, origin, orgName, spaceName, user)
 }
 
-func (m *yamlManager) associateSpaceRole(role userRole, orgName, spaceName, user string) error {
+func (m *yamlManager) associateSpaceRole(role userRole, origin UserOrigin, orgName, spaceName, user string) error {
 	spaceConfig, err := m.GetSpaceConfig(orgName, spaceName)
 	if err != nil {
 		return err
-	}
-
-	if spaceConfig.Developer.hasUAAUser(user) {
-		return nil
 	}
 
 	var userManager *UserMgmt
@@ -704,8 +695,7 @@ func (m *yamlManager) associateSpaceRole(role userRole, orgName, spaceName, user
 		return errors.New("an invalid space role was provided")
 	}
 
-	// TODO: generalize so we can add users to correct origin
-	userManager.addUAAUser(user)
+	userManager.addUser(origin, user)
 	if err = m.SaveSpaceConfig(spaceConfig); err != nil {
 		return err
 	}

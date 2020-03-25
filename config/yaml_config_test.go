@@ -509,17 +509,34 @@ var _ = Describe("CF-Mgmt Config", func() {
 					})
 
 					When("the user does not exist", func() {
-						It("adds the user to the org", func() {
-							o, err := configManager.GetOrgConfig(orgName)
-							Expect(err).ShouldNot(HaveOccurred())
-							Expect(o.Auditor.Users).Should(HaveLen(0))
+						When("the internal origin is requested", func() {
+							It("adds the user to the org", func() {
+								o, err := configManager.GetOrgConfig(orgName)
+								Expect(err).ShouldNot(HaveOccurred())
+								Expect(o.Auditor.Users).Should(HaveLen(0))
 
-							err = configManager.AssociateOrgAuditor(orgName, userName)
-							Expect(err).ShouldNot(HaveOccurred())
+								err = configManager.AssociateOrgAuditor(config.InternalOrigin, orgName, userName)
+								Expect(err).ShouldNot(HaveOccurred())
 
-							o, err = configManager.GetOrgConfig(orgName)
-							Expect(err).ShouldNot(HaveOccurred())
-							Expect(o.Auditor.Users).Should(HaveLen(1))
+								o, err = configManager.GetOrgConfig(orgName)
+								Expect(err).ShouldNot(HaveOccurred())
+								Expect(o.Auditor.Users).Should(HaveLen(1))
+							})
+						})
+
+						When("the saml origin is requested", func() {
+							It("adds the user to the org", func() {
+								o, err := configManager.GetOrgConfig(orgName)
+								Expect(err).ShouldNot(HaveOccurred())
+								Expect(o.Auditor.Users).Should(HaveLen(0))
+
+								err = configManager.AssociateOrgAuditor(config.SAMLOrigin, orgName, userName)
+								Expect(err).ShouldNot(HaveOccurred())
+
+								o, err = configManager.GetOrgConfig(orgName)
+								Expect(err).ShouldNot(HaveOccurred())
+								Expect(o.Auditor.SamlUsers).Should(HaveLen(1))
+							})
 						})
 					})
 
@@ -539,7 +556,7 @@ var _ = Describe("CF-Mgmt Config", func() {
 							Expect(err).ShouldNot(HaveOccurred())
 							Expect(o.Auditor.Users).Should(HaveLen(1))
 
-							err = configManager.AssociateOrgAuditor(orgName, userName)
+							err = configManager.AssociateOrgAuditor(config.InternalOrigin, orgName, userName)
 							Expect(err).ShouldNot(HaveOccurred())
 
 							o, err = configManager.GetOrgConfig(orgName)
@@ -552,7 +569,7 @@ var _ = Describe("CF-Mgmt Config", func() {
 				When("the org does not exist", func() {
 					It("returns an error", func() {
 						orgName := "org-that-does-not-exist"
-						err := configManager.AssociateOrgAuditor(orgName, "my-user")
+						err := configManager.AssociateOrgAuditor(config.InternalOrigin, orgName, "my-user")
 						Expect(err).Should(HaveOccurred())
 						Expect(err).Should(MatchError(fmt.Sprintf("Org [%s] not found in config", orgName)))
 					})
@@ -590,7 +607,7 @@ var _ = Describe("CF-Mgmt Config", func() {
 							Expect(err).ShouldNot(HaveOccurred())
 							Expect(s.Developer.Users).Should(HaveLen(0))
 
-							err = configManager.AssociateSpaceDeveloper(orgName, spaceName, userName)
+							err = configManager.AssociateSpaceDeveloper(config.InternalOrigin, orgName, spaceName, userName)
 							Expect(err).ShouldNot(HaveOccurred())
 
 							s, err = configManager.GetSpaceConfig(orgName, spaceName)
@@ -603,37 +620,78 @@ var _ = Describe("CF-Mgmt Config", func() {
 							Expect(err).ShouldNot(HaveOccurred())
 							Expect(s.Developer.Users).Should(HaveLen(0))
 
-							err = configManager.AssociateSpaceAuditor(orgName, spaceName, userName)
+							err = configManager.AssociateSpaceAuditor(config.InternalOrigin, orgName, spaceName, userName)
 							Expect(err).ShouldNot(HaveOccurred())
 
 							s, err = configManager.GetSpaceConfig(orgName, spaceName)
 							Expect(err).ShouldNot(HaveOccurred())
 							Expect(s.Auditor.Users).Should(HaveLen(1))
 						})
-					})
 
-					When("user already exists in space", func() {
-						BeforeEach(func() {
+						It("creates the user in the correct origin", func() {
 							s, err := configManager.GetSpaceConfig(orgName, spaceName)
 							Expect(err).ShouldNot(HaveOccurred())
+							Expect(s.Developer.Users).Should(HaveLen(0))
 
-							s.Developer.Users = append(s.Developer.Users, userName)
-
-							err = configManager.SaveSpaceConfig(s)
-							Expect(err).ShouldNot(HaveOccurred())
-						})
-
-						It("does nothing and returns nil", func() {
-							s, err := configManager.GetSpaceConfig(orgName, spaceName)
-							Expect(err).ShouldNot(HaveOccurred())
-							Expect(s.Developer.Users).Should(HaveLen(1))
-
-							err = configManager.AssociateSpaceDeveloper(orgName, spaceName, userName)
+							err = configManager.AssociateSpaceAuditor(config.SAMLOrigin, orgName, spaceName, userName)
 							Expect(err).ShouldNot(HaveOccurred())
 
 							s, err = configManager.GetSpaceConfig(orgName, spaceName)
 							Expect(err).ShouldNot(HaveOccurred())
-							Expect(s.Developer.Users).Should(HaveLen(1))
+							Expect(s.Auditor.SamlUsers).Should(HaveLen(1))
+							Expect(s.Auditor.Users).Should(HaveLen(0))
+						})
+					})
+
+					When("user already exists in space", func() {
+						When("saml origin is requested", func() {
+							BeforeEach(func() {
+								s, err := configManager.GetSpaceConfig(orgName, spaceName)
+								Expect(err).ShouldNot(HaveOccurred())
+
+								s.Developer.SamlUsers = append(s.Developer.SamlUsers, userName)
+
+								err = configManager.SaveSpaceConfig(s)
+								Expect(err).ShouldNot(HaveOccurred())
+							})
+
+							It("does nothing and returns nil", func() {
+								s, err := configManager.GetSpaceConfig(orgName, spaceName)
+								Expect(err).ShouldNot(HaveOccurred())
+								Expect(s.Developer.SamlUsers).Should(HaveLen(1))
+
+								err = configManager.AssociateSpaceDeveloper(config.SAMLOrigin, orgName, spaceName, userName)
+								Expect(err).ShouldNot(HaveOccurred())
+
+								s, err = configManager.GetSpaceConfig(orgName, spaceName)
+								Expect(err).ShouldNot(HaveOccurred())
+								Expect(s.Developer.SamlUsers).Should(HaveLen(1))
+							})
+						})
+
+						When("internal origin is requested", func() {
+							BeforeEach(func() {
+								s, err := configManager.GetSpaceConfig(orgName, spaceName)
+								Expect(err).ShouldNot(HaveOccurred())
+
+								s.Developer.Users = append(s.Developer.Users, userName)
+
+								err = configManager.SaveSpaceConfig(s)
+								Expect(err).ShouldNot(HaveOccurred())
+							})
+
+							It("does nothing and returns nil", func() {
+								s, err := configManager.GetSpaceConfig(orgName, spaceName)
+								Expect(err).ShouldNot(HaveOccurred())
+								Expect(s.Developer.Users).Should(HaveLen(1))
+
+								err = configManager.AssociateSpaceDeveloper(config.InternalOrigin, orgName, spaceName, userName)
+								Expect(err).ShouldNot(HaveOccurred())
+
+								s, err = configManager.GetSpaceConfig(orgName, spaceName)
+								Expect(err).ShouldNot(HaveOccurred())
+								Expect(s.Developer.Users).Should(HaveLen(1))
+							})
 						})
 					})
 				})
@@ -644,7 +702,7 @@ var _ = Describe("CF-Mgmt Config", func() {
 							orgName   = "org-that-maybe-exists"
 							spaceName = "space-that-does-not-exist"
 						)
-						err := configManager.AssociateSpaceDeveloper(orgName, spaceName, "my-user")
+						err := configManager.AssociateSpaceDeveloper(config.InternalOrigin, orgName, spaceName, "my-user")
 						Expect(err).Should(HaveOccurred())
 						Expect(err).Should(MatchError(fmt.Sprintf("Space [%s] not found in org [%s] config", spaceName, orgName)))
 					})
